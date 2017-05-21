@@ -21,7 +21,7 @@ Install
 pip install django-yabackup
 ```
 or
-> [easy_install](https://pypi.python.org/pypi/setuptools) [YaBackup](https://pypi.python.org/pypi/YaBackup)
+> [easy_install](https://pypi.python.org/pypi/setuptools) [YaBackup](https://pypi.python.org/pypi/django-yabackup)
 
 
 Quick start
