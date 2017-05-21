@@ -145,10 +145,11 @@ class YaBackup(object):
             zip_file.close()
 
             if backup.upload:
-                self.disk.upload(file_name, settings.YADISKBACKUPS_SETTINGS['YADISK_BACKUP_ROOT'] + backup_date + backup.file_name)
+                self.disk.upload(file_name, settings.YABACKUP_SETTINGS['YADISK_BACKUP_ROOT'] + backup_date + backup.file_name)
                 print(file_name, ' successfully uploaded')
 
                 if backup.delete_after_upload:
                     os.remove(file_name)
                     print(file_name, ' was removed')
 
+# https://github.com/pypa/twine
