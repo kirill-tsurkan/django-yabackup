@@ -27,7 +27,7 @@ or
 Quick start
 -----------
 
-1. Add "YaBackup" to your INSTALLED_APPS setting like this::
+1. Add "YaBackup" to your INSTALLED_APPS setting like this:
 ```
     INSTALLED_APPS = [
         ...
@@ -35,10 +35,10 @@ Quick start
     ]
 ```
 
-2. Add YABACKUP_SETTINGS to your project settings::
+2. Add YABACKUP_SETTINGS to your project settings:
 ```
     YABACKUP_SETTINGS = {
-        'DATE_TIME_FORMAT': '%Y-%m-%d_%H-%M-%S',  # Will be added to you your backup file name
+        'DATE_TIME_FORMAT': '%Y-%m-%d_%H-%M-%S',  # Will be added to your backup file name
         'YADISK_LOGIN': 'login',                  # Yandex.Disk login
         'YADISK_PASSWORD': 'password',            # Yandex.Disk password
         'YADISK_BACKUP_ROOT': '/BACKUPS/',        # path to your backups folder at Yandex.Disk MUST BE CREATED BEFORE RUNNING BACKUPS
