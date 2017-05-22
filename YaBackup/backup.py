@@ -33,13 +33,11 @@ class DatabaseUtilities(object):
 
     def parse_mysql_cnf(self, dbinfo):
         """
-        Attempt to parse mysql database config file for connection settings.
-        Ideally we would hook into django's code to do this, but read_default_file is handled by the mysql C libs
-        so we have to emulate the behaviour
+        Parse mysql database config file for connection settings        
         Settings that are missing will return ''
-        returns (user, password, database_name, database_host, database_port)
+        return: (user, password, database_name, database_host, database_port)
         """
-        read_default_file = dbinfo.get('OPTIONS', {}).get('read_default_file')
+        read_default_file = dbinfo.get('default', {}).get('OPTIONS', {}).get('read_default_file')
         if read_default_file:
             config = configparser.RawConfigParser({
                 'user': '',
@@ -72,17 +70,17 @@ class DatabaseUtilities(object):
     def dump(self, output_directory, zip_file):
         """
         Create a default database dump and add it to archive
-         TODO: add support for PostgreSQL and SqlLight
+        TODO: add support for PostgreSQL and SqlLight
         """
         engine = connection.vendor
         if engine == 'mysql':
             (user, password, database_name, database_host, database_port) = self.parse_mysql_cnf(settings.DATABASES)
-            user = settings.DATABASES.get('USER') or user
-            password = settings.DATABASES.get('PASSWORD') or password
-            database_name = settings.DATABASES.get('NAME') or database_name
+            user = settings.DATABASES['default']['USER'] or user
+            password = settings.DATABASES['default']['PASSWORD'] or password
+            database_name = settings.DATABASES['default']['NAME'] or database_name
             sql_file_name = "%s.sql" % database_name
 
-            cmd = "%(mysqldump)s -u %(user)s --password=%(password)s %(database)s > %(log_dir)s%(file)s" % {
+            cmd = "%(mysqldump)s -u %(user)s --password=%(password)s --default-character-set=utf8 %(database)s > %(log_dir)s%(file)s" % {
                 'mysqldump': 'mysqldump',
                 'user': user,
                 'password': password,
@@ -152,4 +150,3 @@ class YaBackup(object):
                     os.remove(file_name)
                     print(file_name, ' was removed')
 
-# https://github.com/pypa/twine

@@ -20,8 +20,6 @@ Install
 ```
 pip install django-yabackup
 ```
-or
-> [easy_install](https://pypi.python.org/pypi/setuptools) [YaBackup](https://pypi.python.org/pypi/YaBackup)
 
 
 Quick start
@@ -59,8 +57,8 @@ python manage.py YaBackup
 Cron
 ----
 
-> You can use [Chroniker](https://github.com/chrisspen/django-chroniker)
-or other apps to schedule your backups by running management command.
+You can use [Chroniker](https://github.com/chrisspen/django-chroniker)
+or other apps to schedule your backups by running `YaBackup` management command.
 
 
 
